@@ -4,10 +4,9 @@ from discord.ext import commands
 import json
 import os
 
-# Token & Server ID aus Koyeb Environment Variables
 TOKEN = os.getenv("TOKEN")
 GUILD_ID = int(os.getenv("GUILD_ID"))
-ADMIN_ROLE_ID = 1410993496902467710
+ADMIN_ROLE_ID = 1180457125890236456
 DATA_FILE = "tags.json"
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
@@ -16,6 +15,7 @@ bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
 async def on_ready():
     print(f"Bot online als {bot.user}")
     await bot.tree.sync(guild=discord.Object(id=GUILD_ID))
+    print("Slash Commands synchronisiert!")
 
 @bot.tree.command(name="givetag", description="Setzt Roblox Tag", guild=discord.Object(id=GUILD_ID))
 @app_commands.describe(roblox_id="Roblox UserId", tag="Tag")
